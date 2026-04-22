@@ -1556,7 +1556,21 @@ function TakeTest({ test, setPage, setTestAnswers }) {
 
 function Results({ test, setPage, testAnswers }) {
   const [visible, setVisible] = useState(false);
+  const [pdfLoading, setPdfLoading] = useState(false);
+  const [pdfReady, setPdfReady] = useState(false);
+
   useEffect(() => { setTimeout(() => setVisible(true), 200); }, []);
+
+  // Charger jsPDF dynamiquement depuis un CDN (une seule fois)
+  useEffect(() => {
+    if (window.jspdf) { setPdfReady(true); return; }
+    const script = document.createElement("script");
+    script.src = "https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js";
+    script.async = true;
+    script.onload = () => setPdfReady(true);
+    script.onerror = () => console.error("Impossible de charger jsPDF");
+    document.head.appendChild(script);
+  }, []);
 
   if (!test) return null;
 
@@ -1573,6 +1587,283 @@ function Results({ test, setPage, testAnswers }) {
   }
 
   const levelColor = { sage: COLORS.sage, softGold: COLORS.softGold, terracotta: COLORS.terracotta }[results.level?.color] || COLORS.terracotta;
+
+  // ===== Génération PDF côté navigateur =====
+  const exportPDF = () => {
+    if (!pdfReady || !window.jspdf) {
+      alert("La bibliothèque PDF n'est pas encore chargée. Veuillez patienter quelques secondes et réessayer.");
+      return;
+    }
+    setPdfLoading(true);
+    try {
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF({ unit: "mm", format: "a4" });
+      const pageW = 210;
+      const margin = 18;
+      const contentW = pageW - 2 * margin;
+      let y = 20;
+
+      const hexToRgb = hex => { const h = hex.replace("#", ""); return [parseInt(h.slice(0,2), 16), parseInt(h.slice(2,4), 16), parseInt(h.slice(4,6), 16)]; };
+      const terra = hexToRgb(COLORS.terracotta);
+      const sage = hexToRgb(COLORS.sage);
+      const dark = hexToRgb(COLORS.deepBrown);
+      const gray = hexToRgb(COLORS.warmGray);
+      const sand = hexToRgb(COLORS.sand);
+
+      const checkPage = (needed = 20) => {
+        if (y + needed > 280) { doc.addPage(); y = 20; }
+      };
+
+      const addWrappedText = (text, fontSize, color, style = "normal", lineHeight = 5) => {
+        doc.setFontSize(fontSize);
+        doc.setTextColor(...color);
+        doc.setFont("helvetica", style);
+        const lines = doc.splitTextToSize(text, contentW);
+        lines.forEach(line => {
+          checkPage(lineHeight);
+          doc.text(line, margin, y);
+          y += lineHeight;
+        });
+      };
+
+      // ===== EN-TÊTE =====
+      doc.setFillColor(...terra);
+      doc.rect(0, 0, pageW, 35, "F");
+      doc.setFontSize(22);
+      doc.setTextColor(255, 255, 255);
+      doc.setFont("helvetica", "bold");
+      doc.text("Ψ  PsychaPro", margin, 18);
+      doc.setFontSize(11);
+      doc.setFont("helvetica", "normal");
+      doc.text("Rapport de résultats personnalisés", margin, 26);
+
+      y = 50;
+
+      // ===== TITRE DU TEST =====
+      addWrappedText(test.name, 18, dark, "bold", 7);
+      y += 2;
+      const now = new Date();
+      const dateStr = now.toLocaleDateString("fr-FR", { day: "numeric", month: "long", year: "numeric" });
+      addWrappedText(`Test complété le ${dateStr}`, 10, gray, "normal", 5);
+      y += 4;
+
+      // ===== BADGE DE NIVEAU =====
+      if (results.level) {
+        const badgeColor = { sage, softGold: hexToRgb(COLORS.softGold), terracotta: terra }[results.level.color] || terra;
+        doc.setFillColor(...badgeColor);
+        const label = results.level.label;
+        doc.setFontSize(10);
+        const textWidth = doc.getTextWidth(label);
+        doc.roundedRect(margin, y, textWidth + 10, 8, 2, 2, "F");
+        doc.setTextColor(255, 255, 255);
+        doc.setFont("helvetica", "bold");
+        doc.text(label, margin + 5, y + 5.5);
+        y += 14;
+      }
+
+      // ===== AVERTISSEMENT CRITIQUE =====
+      if (results.critical) {
+        doc.setFillColor(255, 244, 240);
+        doc.setDrawColor(...terra);
+        doc.setLineWidth(0.5);
+        doc.roundedRect(margin, y, contentW, 25, 3, 3, "FD");
+        y += 7;
+        doc.setFontSize(11);
+        doc.setTextColor(...terra);
+        doc.setFont("helvetica", "bold");
+        doc.text("⚠  Attention particulière", margin + 4, y);
+        y += 5;
+        doc.setFontSize(9);
+        doc.setTextColor(...dark);
+        doc.setFont("helvetica", "normal");
+        const critLines = doc.splitTextToSize("Vos réponses suggèrent une souffrance qui mérite une attention immédiate. Appelez le 3114 (prévention du suicide, gratuit, 24h/24) ou consultez un professionnel rapidement.", contentW - 8);
+        critLines.forEach(line => { doc.text(line, margin + 4, y); y += 4; });
+        y += 6;
+      }
+
+      // ===== PROFIL DÉTAILLÉ =====
+      checkPage(15);
+      doc.setFontSize(14);
+      doc.setTextColor(...dark);
+      doc.setFont("helvetica", "bold");
+      doc.text("Profil détaillé", margin, y);
+      y += 2;
+      doc.setDrawColor(...terra);
+      doc.setLineWidth(0.8);
+      doc.line(margin, y, margin + 20, y);
+      y += 8;
+
+      results.dimensions.forEach((dim, i) => {
+        checkPage(28);
+        // Nom + score
+        doc.setFontSize(11);
+        doc.setTextColor(...dark);
+        doc.setFont("helvetica", "bold");
+        doc.text(dim.name, margin, y);
+        doc.setTextColor(...terra);
+        doc.text(`${dim.score}%`, pageW - margin, y, { align: "right" });
+        y += 3;
+
+        // Barre de progression
+        doc.setFillColor(...sand);
+        doc.roundedRect(margin, y, contentW, 2.5, 1, 1, "F");
+        const fillW = Math.max(1, (contentW * dim.score) / 100);
+        doc.setFillColor(...terra);
+        doc.roundedRect(margin, y, fillW, 2.5, 1, 1, "F");
+        y += 6;
+
+        // Description
+        doc.setFontSize(9.5);
+        doc.setTextColor(...gray);
+        doc.setFont("helvetica", "normal");
+        const descLines = doc.splitTextToSize(dim.desc, contentW);
+        descLines.forEach(line => {
+          checkPage(5);
+          doc.text(line, margin, y);
+          y += 4.5;
+        });
+        y += 4;
+      });
+
+      // ===== POINTS FORTS & AXES =====
+      if ((results.strong?.length > 0 || results.weak?.length > 0) && !results.critical) {
+        checkPage(40);
+        y += 2;
+        doc.setFontSize(14);
+        doc.setTextColor(...dark);
+        doc.setFont("helvetica", "bold");
+        doc.text("Points forts et axes de développement", margin, y);
+        y += 2;
+        doc.setDrawColor(...terra);
+        doc.line(margin, y, margin + 20, y);
+        y += 8;
+
+        if (results.strong?.length > 0) {
+          checkPage(8);
+          doc.setFontSize(11);
+          doc.setTextColor(...sage);
+          doc.setFont("helvetica", "bold");
+          doc.text("✓ Vos points forts", margin, y);
+          y += 6;
+          doc.setFontSize(10);
+          doc.setTextColor(...dark);
+          doc.setFont("helvetica", "normal");
+          results.strong.slice(0, 4).forEach(d => {
+            checkPage(5);
+            doc.text(`•  ${d.name}`, margin + 2, y);
+            doc.setTextColor(...sage);
+            doc.setFont("helvetica", "bold");
+            doc.text(`${d.score}%`, pageW - margin, y, { align: "right" });
+            doc.setTextColor(...dark);
+            doc.setFont("helvetica", "normal");
+            y += 5;
+          });
+          y += 4;
+        }
+
+        if (results.weak?.length > 0) {
+          checkPage(8);
+          doc.setFontSize(11);
+          doc.setTextColor(...terra);
+          doc.setFont("helvetica", "bold");
+          doc.text("→ Axes de développement", margin, y);
+          y += 6;
+          doc.setFontSize(10);
+          doc.setTextColor(...dark);
+          doc.setFont("helvetica", "normal");
+          results.weak.slice(0, 4).forEach(d => {
+            checkPage(5);
+            doc.text(`•  ${d.name}`, margin + 2, y);
+            doc.setTextColor(...terra);
+            doc.setFont("helvetica", "bold");
+            doc.text(`${d.score}%`, pageW - margin, y, { align: "right" });
+            doc.setTextColor(...dark);
+            doc.setFont("helvetica", "normal");
+            y += 5;
+          });
+          y += 4;
+        }
+      }
+
+      // ===== SYNTHÈSE =====
+      checkPage(20);
+      y += 2;
+      doc.setFontSize(14);
+      doc.setTextColor(...dark);
+      doc.setFont("helvetica", "bold");
+      doc.text("Synthèse détaillée", margin, y);
+      y += 2;
+      doc.setDrawColor(...terra);
+      doc.line(margin, y, margin + 20, y);
+      y += 8;
+
+      const paragraphs = results.summary.split("\n\n");
+      paragraphs.forEach(p => {
+        addWrappedText(p, 10, dark, "normal", 5);
+        y += 3;
+      });
+
+      // ===== CONSEILS =====
+      if (results.advice && results.advice.length > 0) {
+        checkPage(20);
+        y += 4;
+        doc.setFontSize(14);
+        doc.setTextColor(...dark);
+        doc.setFont("helvetica", "bold");
+        doc.text("Pistes pour aller plus loin", margin, y);
+        y += 2;
+        doc.setDrawColor(...terra);
+        doc.line(margin, y, margin + 20, y);
+        y += 8;
+
+        results.advice.forEach(a => {
+          checkPage(18);
+          doc.setFillColor(250, 246, 241);
+          doc.roundedRect(margin, y - 2, contentW, 16, 2, 2, "F");
+          doc.setFontSize(11);
+          doc.setTextColor(...terra);
+          doc.setFont("helvetica", "bold");
+          doc.text(a.title, margin + 4, y + 3);
+          y += 7;
+          doc.setFontSize(9);
+          doc.setTextColor(...gray);
+          doc.setFont("helvetica", "normal");
+          const adviceLines = doc.splitTextToSize(a.text, contentW - 8);
+          adviceLines.forEach(line => { doc.text(line, margin + 4, y); y += 4; });
+          y += 4;
+        });
+      }
+
+      // ===== PIED DE PAGE SUR TOUTES LES PAGES =====
+      const pageCount = doc.internal.getNumberOfPages();
+      for (let i = 1; i <= pageCount; i++) {
+        doc.setPage(i);
+        doc.setDrawColor(...sand);
+        doc.setLineWidth(0.2);
+        doc.line(margin, 285, pageW - margin, 285);
+        doc.setFontSize(8);
+        doc.setTextColor(...gray);
+        doc.setFont("helvetica", "normal");
+        doc.text("PsychaPro — Ces résultats sont informatifs et ne constituent pas un diagnostic médical.", margin, 290);
+        doc.text(`Page ${i}/${pageCount}`, pageW - margin, 290, { align: "right" });
+        doc.text("psychapro.fr", margin, 294);
+        if (results.critical || test.id === "phq9" || test.id === "gad7") {
+          doc.setTextColor(...terra);
+          doc.setFont("helvetica", "bold");
+          doc.text("En cas de détresse : 3114 (24h/24, gratuit)", pageW / 2, 294, { align: "center" });
+        }
+      }
+
+      // Téléchargement
+      const filename = `PsychaPro_${test.id}_${now.toISOString().slice(0, 10)}.pdf`;
+      doc.save(filename);
+      setPdfLoading(false);
+    } catch (err) {
+      console.error(err);
+      alert("Une erreur est survenue lors de la génération du PDF. Veuillez réessayer.");
+      setPdfLoading(false);
+    }
+  };
 
   return (
     <section style={{
@@ -1808,23 +2099,25 @@ function Results({ test, setPage, testAnswers }) {
           display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16,
           opacity: visible ? 1 : 0, transition: "all 0.8s ease 0.6s",
         }} className="result-actions">
-          <button onClick={() => alert("📄 Export PDF lancé !\n\nEn production, cela génèrerait un rapport PDF complet avec vos scores, graphiques et recommandations personnalisées.")}
+          <button onClick={exportPDF} disabled={pdfLoading}
             style={{
               background: "white", border: `2px solid ${COLORS.sage}`,
-              borderRadius: 16, padding: "20px 24px", cursor: "pointer",
+              borderRadius: 16, padding: "20px 24px",
+              cursor: pdfLoading ? "wait" : "pointer",
+              opacity: pdfLoading ? 0.7 : 1,
               display: "flex", alignItems: "center", justifyContent: "center", gap: 12,
               transition: "all 0.3s",
             }}
-            onMouseEnter={e => { e.currentTarget.style.background = `${COLORS.sage}10`; e.currentTarget.style.transform = "translateY(-2px)"; }}
+            onMouseEnter={e => { if (!pdfLoading) { e.currentTarget.style.background = `${COLORS.sage}10`; e.currentTarget.style.transform = "translateY(-2px)"; } }}
             onMouseLeave={e => { e.currentTarget.style.background = "white"; e.currentTarget.style.transform = "translateY(0)"; }}
           >
-            <span style={{ fontSize: 24 }}>📄</span>
+            <span style={{ fontSize: 24 }}>{pdfLoading ? "⏳" : "📄"}</span>
             <div style={{ textAlign: "left" }}>
               <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 15, fontWeight: 700, color: COLORS.deepBrown }}>
-                Exporter en PDF
+                {pdfLoading ? "Génération en cours..." : "Exporter en PDF"}
               </div>
               <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 12, color: COLORS.warmGray }}>
-                Rapport complet à télécharger
+                {pdfLoading ? "Veuillez patienter" : "Rapport complet à télécharger"}
               </div>
             </div>
           </button>
