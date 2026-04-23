@@ -1223,18 +1223,21 @@ function TestCatalog({ setPage, setSelectedTest }) {
                 background: `linear-gradient(90deg, ${test.color}, ${test.color}88)`,
               }} />
               <div style={{ padding: 22 }}>
-                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 16 }}>
-                  <div style={{ fontSize: 40 }}>{test.icon}</div>
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 12 }}>
+                  <div style={{ display: "flex", alignItems: "center", gap: 12, flex: 1, minWidth: 0 }}>
+                    <span style={{ fontSize: 32, flexShrink: 0 }}>{test.icon}</span>
+                    <h3 style={{
+                      fontFamily: "'DM Sans', sans-serif", fontSize: 17, fontWeight: 700,
+                      color: COLORS.deepBrown, margin: 0, lineHeight: 1.25,
+                    }}>{test.name}</h3>
+                  </div>
                   <span style={{
                     background: `${test.color}18`, color: test.color,
                     fontFamily: "'DM Sans', sans-serif", fontSize: 11, fontWeight: 600,
-                    padding: "4px 12px", borderRadius: 12, letterSpacing: "0.3px",
+                    padding: "4px 10px", borderRadius: 12, letterSpacing: "0.3px",
+                    flexShrink: 0, marginLeft: 8,
                   }}>{test.badge}</span>
                 </div>
-                <h3 style={{
-                  fontFamily: "'DM Sans', sans-serif", fontSize: 18, fontWeight: 700,
-                  color: COLORS.deepBrown, marginBottom: 8,
-                }}>{test.name}</h3>
                 <p style={{
                   fontFamily: "'DM Sans', sans-serif", fontSize: 14,
                   color: COLORS.warmGray, lineHeight: 1.6, marginBottom: 16,
@@ -1294,16 +1297,8 @@ function TestDetail({ test, setPage }) {
         <div style={{
           background: "white", borderRadius: 18, overflow: "hidden",
           boxShadow: "0 4px 32px rgba(61,43,31,0.08)",
+          borderTop: `5px solid ${test.color}`,
         }}>
-          <div style={{
-            height: 160,
-            background: `linear-gradient(135deg, ${test.color}30, ${test.color}10)`,
-            display: "flex", alignItems: "center", justifyContent: "center",
-            fontSize: 72,
-          }}>
-            {test.icon}
-          </div>
-
           <div style={{ padding: "30px 36px" }}>
             <span style={{
               background: `${test.color}18`, color: test.color,
@@ -1311,11 +1306,14 @@ function TestDetail({ test, setPage }) {
               padding: "4px 14px", borderRadius: 12,
             }}>{test.badge}</span>
 
-            <h1 style={{
-              fontFamily: "'Playfair Display', Georgia, serif",
-              fontSize: 32, fontWeight: 700, color: COLORS.deepBrown,
-              marginTop: 16, marginBottom: 16,
-            }}>{test.name}</h1>
+            <div style={{ display: "flex", alignItems: "center", gap: 18, marginTop: 16, marginBottom: 16 }}>
+              <span style={{ fontSize: 44, flexShrink: 0 }}>{test.icon}</span>
+              <h1 style={{
+                fontFamily: "'Playfair Display', Georgia, serif",
+                fontSize: 30, fontWeight: 700, color: COLORS.deepBrown,
+                margin: 0, lineHeight: 1.2,
+              }}>{test.name}</h1>
+            </div>
 
             <p style={{
               fontFamily: "'DM Sans', sans-serif", fontSize: 16,
@@ -1475,23 +1473,25 @@ function TakeTest({ test, setPage, setTestAnswers }) {
           boxShadow: "0 4px 32px rgba(61,43,31,0.08)",
           animation: "fadeUp 0.4s ease",
         }}>
-          <div style={{
-            width: 48, height: 48, borderRadius: "50%", marginBottom: 19,
-            background: `linear-gradient(135deg, ${test.color}20, ${test.color}08)`,
-            display: "flex", alignItems: "center", justifyContent: "center",
-            fontFamily: "'Playfair Display', Georgia, serif", fontSize: 18,
-            fontWeight: 700, color: test.color,
-          }}>
-            {current + 1}
-          </div>
+          <div style={{ display: "flex", alignItems: "center", gap: 16, marginBottom: 25 }}>
+            <div style={{
+              width: 44, height: 44, borderRadius: "50%", flexShrink: 0,
+              background: `linear-gradient(135deg, ${test.color}20, ${test.color}08)`,
+              display: "flex", alignItems: "center", justifyContent: "center",
+              fontFamily: "'Playfair Display', Georgia, serif", fontSize: 17,
+              fontWeight: 700, color: test.color,
+            }}>
+              {current + 1}
+            </div>
 
-          <h2 style={{
-            fontFamily: "'Playfair Display', Georgia, serif",
-            fontSize: 24, fontWeight: 700, color: COLORS.deepBrown,
-            marginBottom: 25, lineHeight: 1.4,
-          }}>
-            {q.q}
-          </h2>
+            <h2 style={{
+              fontFamily: "'Playfair Display', Georgia, serif",
+              fontSize: 21, fontWeight: 700, color: COLORS.deepBrown,
+              margin: 0, lineHeight: 1.35, flex: 1,
+            }}>
+              {q.q}
+            </h2>
+          </div>
 
           <div style={{ display: "flex", flexDirection: "column", gap: 12, marginBottom: 28 }}>
             {options.map((opt, i) => (
