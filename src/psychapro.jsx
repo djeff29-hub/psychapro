@@ -873,7 +873,7 @@ function NavBar({ page, setPage }) {
         </div>
 
         {/* Desktop nav */}
-        <div className="nav-links" style={{ display: "flex", gap: 32, alignItems: "center" }}>
+        <div className="nav-links" style={{ display: "flex", gap: 27, alignItems: "center" }}>
           {navItems.map(item => (
             <button key={item.key} onClick={() => navigate(item.key)} aria-current={page === item.key ? "page" : undefined} style={{
               background: "none", border: "none", cursor: "pointer",
@@ -887,7 +887,7 @@ function NavBar({ page, setPage }) {
           ))}
           <button onClick={() => navigate("tests")} style={{
             background: COLORS.terracotta, color: "white", border: "none",
-            borderRadius: 24, padding: "10px 24px", cursor: "pointer",
+            borderRadius: 18, padding: "10px 24px", cursor: "pointer",
             fontFamily: "'DM Sans', sans-serif", fontSize: 14, fontWeight: 600,
             transition: "all 0.3s", boxShadow: "0 2px 12px rgba(196,112,75,0.3)",
           }}
@@ -898,7 +898,7 @@ function NavBar({ page, setPage }) {
           </button>
           <a href="https://rdv.itiaki.com/astrid-quemener" target="_blank" rel="noopener noreferrer" style={{
             background: "white", color: COLORS.terracotta, border: `1.5px solid ${COLORS.terracotta}`,
-            borderRadius: 24, padding: "9px 22px", textDecoration: "none",
+            borderRadius: 18, padding: "9px 22px", textDecoration: "none",
             fontFamily: "'DM Sans', sans-serif", fontSize: 14, fontWeight: 600,
             transition: "all 0.3s",
           }}
@@ -969,18 +969,18 @@ function Hero({ setPage }) {
       minHeight: "100vh", display: "flex", alignItems: "center",
       background: `linear-gradient(160deg, ${COLORS.cream} 0%, ${COLORS.blush} 40%, ${COLORS.sand} 100%)`,
       position: "relative", overflow: "hidden",
-      padding: "100px clamp(1rem, 4vw, 3rem) 60px",
+      padding: "70px clamp(1rem, 4vw, 3rem) 45px",
     }}>
       {/* Decorative elements */}
       <div style={{
         position: "absolute", top: "10%", right: "5%", width: 400, height: 400,
         borderRadius: "50%", background: `radial-gradient(circle, ${COLORS.sageLight}22, transparent)`,
-        filter: "blur(40px)", animation: "float 8s ease-in-out infinite",
+        filter: "blur(30px)", animation: "float 8s ease-in-out infinite",
       }} />
       <div style={{
         position: "absolute", bottom: "15%", left: "10%", width: 300, height: 300,
         borderRadius: "50%", background: `radial-gradient(circle, ${COLORS.lavender}33, transparent)`,
-        filter: "blur(50px)", animation: "float 10s ease-in-out infinite reverse",
+        filter: "blur(37px)", animation: "float 10s ease-in-out infinite reverse",
       }} />
       <div style={{
         position: "absolute", top: "50%", right: "15%", width: 200, height: 200,
@@ -990,7 +990,7 @@ function Hero({ setPage }) {
 
       <div style={{
         maxWidth: 1200, margin: "0 auto", width: "100%",
-        display: "grid", gridTemplateColumns: "1fr 1fr", gap: 80, alignItems: "center",
+        display: "grid", gridTemplateColumns: "1fr 1fr", gap: 56, alignItems: "center",
       }} className="hero-grid">
         <div style={{
           opacity: visible ? 1 : 0, transform: visible ? "translateY(0)" : "translateY(30px)",
@@ -999,7 +999,7 @@ function Hero({ setPage }) {
           <div style={{
             display: "inline-flex", alignItems: "center", gap: 8,
             background: "rgba(143,166,138,0.15)", borderRadius: 20,
-            padding: "6px 16px", marginBottom: 24,
+            padding: "6px 16px", marginBottom: 19,
           }}>
             <span style={{ width: 8, height: 8, borderRadius: "50%", background: COLORS.sage }} />
             <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 13, color: COLORS.sageDark, fontWeight: 500 }}>
@@ -1010,7 +1010,7 @@ function Hero({ setPage }) {
           <h1 style={{
             fontFamily: "'Playfair Display', Georgia, serif",
             fontSize: "clamp(36px, 4.5vw, 60px)", fontWeight: 700,
-            color: COLORS.deepBrown, lineHeight: 1.15, marginBottom: 24,
+            color: COLORS.deepBrown, lineHeight: 1.15, marginBottom: 19,
             letterSpacing: "-1px",
           }}>
             Explorez les<br />
@@ -1023,7 +1023,7 @@ function Hero({ setPage }) {
 
           <p style={{
             fontFamily: "'DM Sans', sans-serif", fontSize: 18, lineHeight: 1.7,
-            color: COLORS.warmGray, maxWidth: 480, marginBottom: 40,
+            color: COLORS.warmGray, maxWidth: 480, marginBottom: 26,
           }}>
             Des tests psychologiques reconnus et entièrement gratuits, des résultats détaillés et personnalisés,
             et la possibilité de consulter un professionnel pour aller plus loin.
@@ -1032,7 +1032,7 @@ function Hero({ setPage }) {
           <div style={{ display: "flex", gap: 16, flexWrap: "wrap" }}>
             <button onClick={() => setPage("tests")} style={{
               background: COLORS.terracotta, color: "white", border: "none",
-              borderRadius: 28, padding: "16px 36px", cursor: "pointer",
+              borderRadius: 21, padding: "16px 36px", cursor: "pointer",
               fontFamily: "'DM Sans', sans-serif", fontSize: 16, fontWeight: 600,
               boxShadow: "0 4px 24px rgba(196,112,75,0.35)",
               transition: "all 0.3s",
@@ -1044,7 +1044,7 @@ function Hero({ setPage }) {
             </button>
             <a href="https://rdv.itiaki.com/astrid-quemener" target="_blank" rel="noopener noreferrer" style={{
               background: COLORS.terracotta, color: "white",
-              border: "none", borderRadius: 28,
+              border: "none", borderRadius: 21,
               padding: "16px 36px", cursor: "pointer", textDecoration: "none",
               fontFamily: "'DM Sans', sans-serif", fontSize: 16, fontWeight: 600,
               boxShadow: "0 4px 24px rgba(196,112,75,0.35)",
@@ -1060,8 +1060,8 @@ function Hero({ setPage }) {
 
         {/* Right side - decorative cards */}
         <div style={{
-          position: "relative", height: 500,
-          opacity: visible ? 1 : 0, transform: visible ? "translateX(0)" : "translateX(40px)",
+          position: "relative", height: 420,
+          opacity: visible ? 1 : 0, transform: visible ? "translateX(0)" : "translateX(30px)",
           transition: "all 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.2s",
         }} className="hero-right">
           {[
@@ -1114,12 +1114,12 @@ function HowItWorks({ setPage }) {
         }}>Comment ça fonctionne</h2>
         <p style={{
           fontFamily: "'DM Sans', sans-serif", fontSize: 16, color: COLORS.warmGray,
-          maxWidth: 500, margin: "0 auto 60px",
+          maxWidth: 500, margin: "0 auto 45px",
         }}>
           Un parcours simple et bienveillant, de la découverte de soi à l'accompagnement professionnel.
         </p>
 
-        <div className="how-grid" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 24 }}>
+        <div className="how-grid" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 20 }}>
           {[
             { step: "01", icon: "📋", title: "Choisissez", desc: "Sélectionnez le test adapté à votre besoin — tous nos tests sont gratuits." },
             { step: "02", icon: "✍️", title: "Passez le test", desc: "Répondez aux questions dans un environnement calme et bienveillant." },
@@ -1127,7 +1127,7 @@ function HowItWorks({ setPage }) {
             { step: "04", icon: "🎥", title: "Consultez", desc: "Prenez rendez-vous en ligne avec une professionnelle pour approfondir vos résultats." },
           ].map((item, i) => (
             <div key={i} style={{
-              background: "white", borderRadius: 20, padding: 32,
+              background: "white", borderRadius: 20, padding: 25,
               boxShadow: "0 2px 16px rgba(61,43,31,0.05)",
               border: `1px solid ${COLORS.sand}40`,
               transition: "all 0.4s",
@@ -1163,12 +1163,12 @@ function TestCatalog({ setPage, setSelectedTest }) {
 
   return (
     <section style={{
-      padding: "120px clamp(1rem, 4vw, 3rem) 80px",
+      padding: "84px clamp(1rem, 4vw, 3rem) 56px",
       background: `linear-gradient(180deg, ${COLORS.cream}, ${COLORS.warmWhite})`,
-      minHeight: "100vh",
+   
     }}>
       <div style={{ maxWidth: 1200, margin: "0 auto" }}>
-        <div style={{ textAlign: "center", marginBottom: 48 }}>
+        <div style={{ textAlign: "center", marginBottom: 31 }}>
           <h2 style={{
             fontFamily: "'Playfair Display', Georgia, serif",
             fontSize: 40, fontWeight: 700, color: COLORS.deepBrown, marginBottom: 12,
@@ -1183,7 +1183,7 @@ function TestCatalog({ setPage, setSelectedTest }) {
 
         {/* Category filters */}
         <div style={{
-          display: "flex", gap: 8, justifyContent: "center", marginBottom: 48,
+          display: "flex", gap: 8, justifyContent: "center", marginBottom: 31,
           flexWrap: "wrap",
         }}>
           {Object.entries(CATEGORIES).map(([key, label]) => (
@@ -1204,7 +1204,7 @@ function TestCatalog({ setPage, setSelectedTest }) {
         <div style={{
           display: "grid",
           gridTemplateColumns: "repeat(auto-fill, minmax(340, 1fr))",
-          gap: 24,
+          gap: 20,
         }}>
           {filtered.map((test, i) => (
             <div key={test.id} style={{
@@ -1215,14 +1215,14 @@ function TestCatalog({ setPage, setSelectedTest }) {
               animation: `fadeUp 0.5s ease ${i * 0.05}s both`,
             }}
               onClick={() => { setSelectedTest(test); setPage("test-detail"); }}
-              onMouseEnter={e => { e.currentTarget.style.transform = "translateY(-4px)"; e.currentTarget.style.boxShadow = "0 12px 40px rgba(61,43,31,0.12)"; }}
+              onMouseEnter={e => { e.currentTarget.style.transform = "translateY(-4px)"; e.currentTarget.style.boxShadow = "0 12px 30px rgba(61,43,31,0.12)"; }}
               onMouseLeave={e => { e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.boxShadow = "0 2px 16px rgba(61,43,31,0.06)"; }}
             >
               <div style={{
                 height: 6,
                 background: `linear-gradient(90deg, ${test.color}, ${test.color}88)`,
               }} />
-              <div style={{ padding: 28 }}>
+              <div style={{ padding: 22 }}>
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 16 }}>
                   <div style={{ fontSize: 40 }}>{test.icon}</div>
                   <span style={{
@@ -1237,7 +1237,7 @@ function TestCatalog({ setPage, setSelectedTest }) {
                 }}>{test.name}</h3>
                 <p style={{
                   fontFamily: "'DM Sans', sans-serif", fontSize: 14,
-                  color: COLORS.warmGray, lineHeight: 1.6, marginBottom: 20,
+                  color: COLORS.warmGray, lineHeight: 1.6, marginBottom: 16,
                   display: "-webkit-box", WebkitLineClamp: 3, WebkitBoxOrient: "vertical",
                   overflow: "hidden",
                 }}>{test.description}</p>
@@ -1279,20 +1279,20 @@ function TestDetail({ test, setPage }) {
   if (!test) return null;
   return (
     <section style={{
-      padding: "120px clamp(1rem, 4vw, 3rem) 80px",
-      background: COLORS.cream, minHeight: "100vh",
+      padding: "84px clamp(1rem, 4vw, 3rem) 56px",
+   background: COLORS.cream,
     }}>
       <div style={{ maxWidth: 800, margin: "0 auto" }}>
         <button onClick={() => setPage("tests")} style={{
           background: "none", border: "none", cursor: "pointer",
           fontFamily: "'DM Sans', sans-serif", fontSize: 14, color: COLORS.warmGray,
-          marginBottom: 32, display: "flex", alignItems: "center", gap: 8,
+          marginBottom: 25, display: "flex", alignItems: "center", gap: 8,
         }}>
           ← Retour aux tests
         </button>
 
         <div style={{
-          background: "white", borderRadius: 24, overflow: "hidden",
+          background: "white", borderRadius: 18, overflow: "hidden",
           boxShadow: "0 4px 32px rgba(61,43,31,0.08)",
         }}>
           <div style={{
@@ -1304,7 +1304,7 @@ function TestDetail({ test, setPage }) {
             {test.icon}
           </div>
 
-          <div style={{ padding: "40px 48px" }}>
+          <div style={{ padding: "30px 36px" }}>
             <span style={{
               background: `${test.color}18`, color: test.color,
               fontFamily: "'DM Sans', sans-serif", fontSize: 12, fontWeight: 600,
@@ -1319,12 +1319,12 @@ function TestDetail({ test, setPage }) {
 
             <p style={{
               fontFamily: "'DM Sans', sans-serif", fontSize: 16,
-              color: COLORS.warmGray, lineHeight: 1.8, marginBottom: 32,
+              color: COLORS.warmGray, lineHeight: 1.8, marginBottom: 25,
             }}>{test.description}</p>
 
             <div style={{
               display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 16,
-              marginBottom: 32,
+              marginBottom: 25,
             }}>
               {[
                 { label: "Durée", value: test.duration, icon: "⏱" },
@@ -1332,7 +1332,7 @@ function TestDetail({ test, setPage }) {
                 { label: "Rapport", value: "PDF inclus", icon: "📄" },
               ].map((info, i) => (
                 <div key={i} style={{
-                  background: COLORS.offWhite, borderRadius: 16, padding: 20,
+                  background: COLORS.offWhite, borderRadius: 16, padding: 16,
                   textAlign: "center",
                 }}>
                   <div style={{ fontSize: 24, marginBottom: 8 }}>{info.icon}</div>
@@ -1349,7 +1349,7 @@ function TestDetail({ test, setPage }) {
 
             <div style={{
               background: `linear-gradient(135deg, ${COLORS.sage}10, ${COLORS.sageLight}20)`,
-              borderRadius: 16, padding: 24, marginBottom: 32,
+              borderRadius: 16, padding: 19, marginBottom: 25,
               border: `1px solid ${COLORS.sageLight}40`,
             }}>
               <h3 style={{
@@ -1369,7 +1369,7 @@ function TestDetail({ test, setPage }) {
 
             <div style={{
               display: "flex", alignItems: "center", justifyContent: "space-between",
-              paddingTop: 24, borderTop: `1px solid ${COLORS.sand}`,
+              paddingTop: 19, borderTop: `1px solid ${COLORS.sand}`,
             }}>
               <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
                 <span style={{
@@ -1384,7 +1384,7 @@ function TestDetail({ test, setPage }) {
               </div>
               <button onClick={() => setPage("take-test")} style={{
                 background: COLORS.terracotta, color: "white", border: "none",
-                borderRadius: 28, padding: "16px 40px", cursor: "pointer",
+                borderRadius: 21, padding: "16px 30px", cursor: "pointer",
                 fontFamily: "'DM Sans', sans-serif", fontSize: 16, fontWeight: 600,
                 boxShadow: "0 4px 24px rgba(196,112,75,0.35)",
                 transition: "all 0.3s",
@@ -1430,9 +1430,9 @@ function TakeTest({ test, setPage, setTestAnswers }) {
 
   if (total === 0) {
     return (
-      <section style={{ padding: "120px 2rem", textAlign: "center", minHeight: "100vh" }}>
+      <section style={{ padding: "84px 2rem", textAlign: "center", minHeight: "100vh" }}>
         <p>Ce test n'est pas encore disponible.</p>
-        <button onClick={() => setPage("tests")} style={{ marginTop: 20, padding: "10px 20px", background: COLORS.terracotta, color: "white", border: "none", borderRadius: 10, cursor: "pointer" }}>Retour aux tests</button>
+        <button onClick={() => setPage("tests")} style={{ marginTop: 16, padding: "10px 20px", background: COLORS.terracotta, color: "white", border: "none", borderRadius: 10, cursor: "pointer" }}>Retour aux tests</button>
       </section>
     );
   }
@@ -1442,13 +1442,13 @@ function TakeTest({ test, setPage, setTestAnswers }) {
 
   return (
     <section style={{
-      padding: "120px clamp(1rem, 4vw, 3rem) 80px",
+      padding: "84px clamp(1rem, 4vw, 3rem) 56px",
       background: `linear-gradient(180deg, ${COLORS.cream}, ${COLORS.blush}30)`,
-      minHeight: "100vh",
+   
     }}>
       <div style={{ maxWidth: 680, margin: "0 auto" }}>
         {/* Progress */}
-        <div style={{ marginBottom: 40 }}>
+        <div style={{ marginBottom: 26 }}>
           <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 8 }}>
             <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 14, color: COLORS.warmGray }}>
               {test.name}
@@ -1471,12 +1471,12 @@ function TakeTest({ test, setPage, setTestAnswers }) {
 
         {/* Question card */}
         <div key={current} style={{
-          background: "white", borderRadius: 24, padding: "48px 40px",
+          background: "white", borderRadius: 18, padding: "28px 26px",
           boxShadow: "0 4px 32px rgba(61,43,31,0.08)",
           animation: "fadeUp 0.4s ease",
         }}>
           <div style={{
-            width: 48, height: 48, borderRadius: "50%", marginBottom: 24,
+            width: 48, height: 48, borderRadius: "50%", marginBottom: 19,
             background: `linear-gradient(135deg, ${test.color}20, ${test.color}08)`,
             display: "flex", alignItems: "center", justifyContent: "center",
             fontFamily: "'Playfair Display', Georgia, serif", fontSize: 18,
@@ -1488,12 +1488,12 @@ function TakeTest({ test, setPage, setTestAnswers }) {
           <h2 style={{
             fontFamily: "'Playfair Display', Georgia, serif",
             fontSize: 24, fontWeight: 700, color: COLORS.deepBrown,
-            marginBottom: 32, lineHeight: 1.4,
+            marginBottom: 25, lineHeight: 1.4,
           }}>
             {q.q}
           </h2>
 
-          <div style={{ display: "flex", flexDirection: "column", gap: 12, marginBottom: 36 }}>
+          <div style={{ display: "flex", flexDirection: "column", gap: 12, marginBottom: 28 }}>
             {options.map((opt, i) => (
               <button key={i} onClick={() => setSelected(i)} style={{
                 background: selected === i ? `${COLORS.terracotta}10` : COLORS.offWhite,
@@ -1579,9 +1579,9 @@ function Results({ test, setPage, testAnswers }) {
 
   if (!results) {
     return (
-      <section style={{ padding: "120px 2rem", textAlign: "center", minHeight: "100vh" }}>
+      <section style={{ padding: "84px 2rem", textAlign: "center", minHeight: "100vh" }}>
         <p>Impossible de calculer les résultats. Veuillez refaire le test.</p>
-        <button onClick={() => setPage("tests")} style={{ marginTop: 20, padding: "10px 20px", background: COLORS.terracotta, color: "white", border: "none", borderRadius: 10, cursor: "pointer" }}>Retour aux tests</button>
+        <button onClick={() => setPage("tests")} style={{ marginTop: 16, padding: "10px 20px", background: COLORS.terracotta, color: "white", border: "none", borderRadius: 10, cursor: "pointer" }}>Retour aux tests</button>
       </section>
     );
   }
@@ -1867,13 +1867,13 @@ function Results({ test, setPage, testAnswers }) {
 
   return (
     <section style={{
-      padding: "120px clamp(1rem, 4vw, 3rem) 80px",
+      padding: "84px clamp(1rem, 4vw, 3rem) 56px",
       background: `linear-gradient(180deg, ${COLORS.cream}, ${COLORS.warmWhite})`,
-      minHeight: "100vh",
+   
     }}>
       <div style={{ maxWidth: 800, margin: "0 auto" }}>
         <div style={{
-          textAlign: "center", marginBottom: 40,
+          textAlign: "center", marginBottom: 26,
           opacity: visible ? 1 : 0, transform: visible ? "none" : "translateY(20px)",
           transition: "all 0.8s ease",
         }}>
@@ -1901,7 +1901,7 @@ function Results({ test, setPage, testAnswers }) {
         {results.critical && (
           <div style={{
             background: "#FFF4F0", border: `2px solid ${COLORS.terracotta}`,
-            borderRadius: 16, padding: 24, marginBottom: 24,
+            borderRadius: 16, padding: 19, marginBottom: 19,
             display: "flex", alignItems: "flex-start", gap: 16,
           }}>
             <span style={{ fontSize: 28 }}>🆘</span>
@@ -1926,18 +1926,18 @@ function Results({ test, setPage, testAnswers }) {
 
         {/* Score bars */}
         <div style={{
-          background: "white", borderRadius: 24, padding: "40px 44px",
-          boxShadow: "0 4px 32px rgba(61,43,31,0.08)", marginBottom: 24,
+          background: "white", borderRadius: 18, padding: "30px 33px",
+          boxShadow: "0 4px 32px rgba(61,43,31,0.08)", marginBottom: 19,
           opacity: visible ? 1 : 0, transform: visible ? "none" : "translateY(20px)",
           transition: "all 0.8s ease 0.2s",
         }}>
           <h2 style={{
             fontFamily: "'Playfair Display', Georgia, serif",
-            fontSize: 22, fontWeight: 700, color: COLORS.deepBrown, marginBottom: 32,
+            fontSize: 22, fontWeight: 700, color: COLORS.deepBrown, marginBottom: 25,
           }}>Profil détaillé</h2>
 
           {results.dimensions.map((dim, i) => (
-            <div key={i} style={{ marginBottom: 28 }}>
+            <div key={i} style={{ marginBottom: 22 }}>
               <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 8 }}>
                 <span style={{
                   fontFamily: "'DM Sans', sans-serif", fontSize: 15, fontWeight: 600,
@@ -1970,7 +1970,7 @@ function Results({ test, setPage, testAnswers }) {
         {/* Strong points & development axes */}
         {(results.strong?.length > 0 || results.weak?.length > 0) && !results.critical && (
           <div style={{
-            display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16, marginBottom: 24,
+            display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16, marginBottom: 19,
             opacity: visible ? 1 : 0, transform: visible ? "none" : "translateY(20px)",
             transition: "all 0.8s ease 0.3s",
           }} className="result-actions">
@@ -2033,14 +2033,14 @@ function Results({ test, setPage, testAnswers }) {
 
         {/* Summary — multi-paragraph */}
         <div style={{
-          background: "white", borderRadius: 24, padding: "40px 44px",
-          boxShadow: "0 4px 32px rgba(61,43,31,0.08)", marginBottom: 24,
+          background: "white", borderRadius: 18, padding: "30px 33px",
+          boxShadow: "0 4px 32px rgba(61,43,31,0.08)", marginBottom: 19,
           opacity: visible ? 1 : 0, transform: visible ? "none" : "translateY(20px)",
           transition: "all 0.8s ease 0.4s",
         }}>
           <h2 style={{
             fontFamily: "'Playfair Display', Georgia, serif",
-            fontSize: 22, fontWeight: 700, color: COLORS.deepBrown, marginBottom: 20,
+            fontSize: 22, fontWeight: 700, color: COLORS.deepBrown, marginBottom: 16,
           }}>Synthèse détaillée</h2>
           {results.summary.split("\n\n").map((paragraph, i) => (
             <p key={i} style={{
@@ -2049,7 +2049,7 @@ function Results({ test, setPage, testAnswers }) {
             }}>{paragraph}</p>
           ))}
           <div style={{
-            marginTop: 20, padding: 14, background: COLORS.offWhite, borderRadius: 12,
+            marginTop: 16, padding: 14, background: COLORS.offWhite, borderRadius: 12,
             fontFamily: "'DM Sans', sans-serif", fontSize: 12, color: COLORS.warmGray,
             lineHeight: 1.6,
           }}>
@@ -2060,8 +2060,8 @@ function Results({ test, setPage, testAnswers }) {
         {/* Advice cards */}
         {results.advice && results.advice.length > 0 && (
           <div style={{
-            background: "white", borderRadius: 24, padding: "40px 44px",
-            boxShadow: "0 4px 32px rgba(61,43,31,0.08)", marginBottom: 24,
+            background: "white", borderRadius: 18, padding: "30px 33px",
+            boxShadow: "0 4px 32px rgba(61,43,31,0.08)", marginBottom: 19,
             opacity: visible ? 1 : 0, transform: visible ? "none" : "translateY(20px)",
             transition: "all 0.8s ease 0.5s",
           }}>
@@ -2071,9 +2071,9 @@ function Results({ test, setPage, testAnswers }) {
             }}>Pistes pour aller plus loin</h2>
             <p style={{
               fontFamily: "'DM Sans', sans-serif", fontSize: 14,
-              color: COLORS.warmGray, marginBottom: 24, lineHeight: 1.6,
+              color: COLORS.warmGray, marginBottom: 19, lineHeight: 1.6,
             }}>Quelques suggestions adaptées à votre profil — à prendre comme des invitations, non comme des prescriptions.</p>
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: 14 }}>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(154px, 1fr))", gap: 14 }}>
               {results.advice.map((a, i) => (
                 <div key={i} style={{
                   background: COLORS.offWhite, borderRadius: 14, padding: "18px 20px",
@@ -2240,7 +2240,7 @@ function CookieBanner() {
       animation: "slideUp 0.4s ease",
     }}>
       <div style={{ maxWidth: 1200, margin: "0 auto" }}>
-        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 24, flexWrap: "wrap" }}>
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 20, flexWrap: "wrap" }}>
           <div style={{ flex: 1, minWidth: 280 }}>
             <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 14, color: "rgba(255,255,255,0.9)", lineHeight: 1.6, margin: 0 }}>
               🍪 PsychaPro utilise des cookies strictement nécessaires et, avec votre accord, des cookies d'analyse anonymisée. Vos données sont traitées conformément au RGPD.{" "}
@@ -2272,15 +2272,15 @@ function CookieBanner() {
 function MentionsLegales({ setPage, activeLegal }) {
   const [tab, setTab] = useState(activeLegal || "mentions");
   const P = ({ children, small }) => <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: small ? 12 : 14, color: small ? COLORS.warmGray : COLORS.deepBrown, lineHeight: 1.8, marginBottom: 12 }}>{children}</p>;
-  const H3 = ({ children }) => <h3 style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 16, fontWeight: 700, color: COLORS.deepBrown, marginTop: 28, marginBottom: 10 }}>{children}</h3>;
+  const H3 = ({ children }) => <h3 style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 16, fontWeight: 700, color: COLORS.deepBrown, marginTop: 22, marginBottom: 10 }}>{children}</h3>;
 
   return (
-    <section style={{ padding: "120px clamp(1rem, 4vw, 3rem) 80px", background: `linear-gradient(180deg, ${COLORS.cream}, ${COLORS.warmWhite})`, minHeight: "100vh" }}>
+  <section style={{ padding: "84px clamp(1rem, 4vw, 3rem) 56px", background: `linear-gradient(180deg, ${COLORS.cream}, ${COLORS.warmWhite})` }}>
       <div style={{ maxWidth: 800, margin: "0 auto" }}>
-        <button onClick={() => setPage("home")} aria-label="Retour à l'accueil" style={{ background: "none", border: "none", cursor: "pointer", fontFamily: "'DM Sans', sans-serif", fontSize: 14, color: COLORS.warmGray, marginBottom: 24 }}>← Retour à l'accueil</button>
-        <h1 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 32, fontWeight: 700, color: COLORS.deepBrown, marginBottom: 24 }}>Informations légales</h1>
+        <button onClick={() => setPage("home")} aria-label="Retour à l'accueil" style={{ background: "none", border: "none", cursor: "pointer", fontFamily: "'DM Sans', sans-serif", fontSize: 14, color: COLORS.warmGray, marginBottom: 19 }}>← Retour à l'accueil</button>
+        <h1 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 32, fontWeight: 700, color: COLORS.deepBrown, marginBottom: 19 }}>Informations légales</h1>
 
-        <div style={{ display: "flex", gap: 8, marginBottom: 32, flexWrap: "wrap" }}>
+        <div style={{ display: "flex", gap: 8, marginBottom: 25, flexWrap: "wrap" }}>
           {[{ key: "mentions", label: "Mentions légales" }, { key: "rgpd", label: "Politique de confidentialité" }, { key: "cgv", label: "Conditions d'utilisation" }].map(t => (
             <button key={t.key} onClick={() => setTab(t.key)} style={{
               background: tab === t.key ? COLORS.terracotta : "white", color: tab === t.key ? "white" : COLORS.deepBrown,
@@ -2290,10 +2290,10 @@ function MentionsLegales({ setPage, activeLegal }) {
           ))}
         </div>
 
-        <div style={{ background: "white", borderRadius: 20, padding: "40px 44px", boxShadow: "0 2px 16px rgba(61,43,31,0.06)" }} className="legal-content">
+        <div style={{ background: "white", borderRadius: 20, padding: "30px 33px", boxShadow: "0 2px 16px rgba(61,43,31,0.06)" }} className="legal-content">
 
           {tab === "mentions" && (<article>
-            <h2 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 24, fontWeight: 700, color: COLORS.deepBrown, marginBottom: 20 }}>Mentions légales</h2>
+            <h2 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 24, fontWeight: 700, color: COLORS.deepBrown, marginBottom: 16 }}>Mentions légales</h2>
             <P small>Conformément à la Loi n° 2004-575 du 21 juin 2004 pour la Confiance dans l'économie numérique (LCEN), articles 6-III et 19.</P>
 
             <H3>1. Éditeur du site</H3>
@@ -2353,7 +2353,7 @@ function MentionsLegales({ setPage, activeLegal }) {
           </article>)}
 
           {tab === "rgpd" && (<article>
-            <h2 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 24, fontWeight: 700, color: COLORS.deepBrown, marginBottom: 20 }}>Politique de confidentialité</h2>
+            <h2 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 24, fontWeight: 700, color: COLORS.deepBrown, marginBottom: 16 }}>Politique de confidentialité</h2>
             <P small>Conformément au Règlement Général sur la Protection des Données (RGPD — Règlement UE 2016/679) et à la Loi Informatique et Libertés du 6 janvier 1978 modifiée.</P>
 
             <H3>1. Responsable du traitement</H3>
@@ -2441,7 +2441,7 @@ function MentionsLegales({ setPage, activeLegal }) {
           </article>)}
 
           {tab === "cgv" && (<article>
-            <h2 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 24, fontWeight: 700, color: COLORS.deepBrown, marginBottom: 20 }}>Conditions Générales d'Utilisation</h2>
+            <h2 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 24, fontWeight: 700, color: COLORS.deepBrown, marginBottom: 16 }}>Conditions Générales d'Utilisation</h2>
             <P small>En vigueur à compter du [date à compléter]. Le site psychapro.fr ne vendant aucun bien ni service payant, il n'y a pas de CGV (Conditions Générales de Vente) à proprement parler — les présentes CGU régissent l'accès et l'usage gratuit du site.</P>
 
             <H3>1. Objet</H3>
@@ -2532,7 +2532,7 @@ function MentionsLegales({ setPage, activeLegal }) {
           </article>)}
         </div>
 
-        <div style={{ marginTop: 32, padding: 24, background: "white", borderRadius: 16, boxShadow: "0 2px 16px rgba(61,43,31,0.06)", display: "flex", alignItems: "center", gap: 16 }}>
+        <div style={{ marginTop: 25, padding: 19, background: "white", borderRadius: 16, boxShadow: "0 2px 16px rgba(61,43,31,0.06)", display: "flex", alignItems: "center", gap: 16 }}>
           <span style={{ fontSize: 24 }}>📞</span>
           <div>
             <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 14, fontWeight: 700, color: COLORS.deepBrown }}>Une question juridique ou une demande RGPD ?</div>
@@ -2547,11 +2547,11 @@ function MentionsLegales({ setPage, activeLegal }) {
 function Footer({ setPage }) {
   return (
     <footer role="contentinfo" style={{
-      background: COLORS.deepBrown, padding: "60px clamp(1rem, 4vw, 3rem) 40px",
+      background: COLORS.deepBrown, padding: "45px clamp(1rem, 4vw, 3rem) 30px",
     }}>
       <div style={{
         maxWidth: 1200, margin: "0 auto",
-        display: "grid", gridTemplateColumns: "2fr 1fr 1fr 1fr", gap: 48,
+        display: "grid", gridTemplateColumns: "2fr 1fr 1fr 1fr", gap: 33,
       }} className="footer-grid">
         <div>
           <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 16 }}>
@@ -2610,7 +2610,7 @@ function Footer({ setPage }) {
       </div>
 
       <div style={{
-        maxWidth: 1200, margin: "40px auto 0", paddingTop: 24,
+        maxWidth: 1200, margin: "30px auto 0", paddingTop: 19,
         borderTop: "1px solid rgba(255,255,255,0.1)",
         display: "flex", justifyContent: "space-between",
       }}>
@@ -2638,7 +2638,7 @@ export default function App() {
   return (
     <div style={{
       fontFamily: "'DM Sans', sans-serif",
-      background: COLORS.cream, minHeight: "100vh",
+   background: COLORS.cream,
     }}>
       <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
       <JsonLd />
@@ -2651,7 +2651,7 @@ export default function App() {
         textDecoration: "none", transition: "top 0.2s",
       }}
         onFocus={e => e.target.style.top = "8px"}
-        onBlur={e => e.target.style.top = "-60px"}
+        onBlur={e => e.target.style.top = "-45px"}
       >Aller au contenu principal</a>
 
       {/* Global responsive + a11y styles */}
