@@ -2303,7 +2303,7 @@ function MentionsLegales({ setPage, activeLegal }) {
               Adresse professionnelle : [à compléter]<br />
               SIRET : [numéro à compléter après immatriculation]<br />
               Directrice de la publication : Astrid Quémener<br />
-              Contact : contact@psychapro.fr
+              Contact : psychafrance@outlook.fr
             </P>
 
             <H3>2. Hébergeur du site</H3>
@@ -2359,7 +2359,7 @@ function MentionsLegales({ setPage, activeLegal }) {
             <H3>1. Responsable du traitement</H3>
             <P>
               Le responsable du traitement des données est <strong>Astrid Quémener</strong>, entrepreneure individuelle, éditrice du site psychapro.fr.<br />
-              Pour toute question relative à vos données : <strong>contact@psychapro.fr</strong>
+              Pour toute question relative à vos données : <strong>psychafrance@outlook.fr</strong>
             </P>
 
             <H3>2. Principe fondateur : minimisation des données</H3>
@@ -2408,7 +2408,7 @@ function MentionsLegales({ setPage, activeLegal }) {
               Même si nous collectons très peu de données, vous disposez en vertu du RGPD des droits suivants : accès, rectification, effacement, limitation, opposition, portabilité et retrait du consentement.
             </P>
             <P>
-              Pour exercer ces droits, écrivez à <strong>contact@psychapro.fr</strong>. Une réponse vous sera apportée dans un délai maximum de 30 jours.
+             Pour exercer ces droits, écrivez à <strong>psychafrance@outlook.fr</strong>. Une réponse vous sera apportée dans un délai maximum de 30 jours.
             </P>
             <P>
               En cas de désaccord, vous pouvez introduire une réclamation auprès de la <strong>CNIL</strong> : 3 place de Fontenoy, TSA 80715, 75334 Paris Cedex 07 — <a href="https://www.cnil.fr" target="_blank" rel="noopener noreferrer" style={{ color: COLORS.terracotta }}>www.cnil.fr</a>
@@ -2527,7 +2527,7 @@ function MentionsLegales({ setPage, activeLegal }) {
 
             <H3>12. Contact</H3>
             <P>
-              Pour toute question relative aux présentes CGU : <strong>contact@psychapro.fr</strong>
+            Pour toute question relative aux présentes CGU : <strong>psychafrance@outlook.fr</strong>
             </P>
           </article>)}
         </div>
@@ -2536,7 +2536,7 @@ function MentionsLegales({ setPage, activeLegal }) {
           <span style={{ fontSize: 24 }}>📞</span>
           <div>
             <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 14, fontWeight: 700, color: COLORS.deepBrown }}>Une question juridique ou une demande RGPD ?</div>
-            <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 13, color: COLORS.warmGray }}>contact@psychapro.fr · Réponse sous 30 jours</div>
+            <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 13, color: COLORS.warmGray }}>psychafrance@outlook.fr · Réponse sous 30 jours</div>
           </div>
         </div>
       </div>
