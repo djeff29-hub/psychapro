@@ -896,9 +896,9 @@ function NavBar({ page, setPage }) {
           >
             Commencer un test
           </button>
-          <a href="https://rdv.itiaki.com/astrid-quemener" target="_blank" rel="noopener noreferrer" style={{
+          <button onClick={() => navigate("consultations")} style={{
             background: "white", color: COLORS.terracotta, border: `1.5px solid ${COLORS.terracotta}`,
-            borderRadius: 18, padding: "9px 22px", textDecoration: "none",
+            borderRadius: 18, padding: "9px 22px", cursor: "pointer",
             fontFamily: "'DM Sans', sans-serif", fontSize: 14, fontWeight: 600,
             transition: "all 0.3s",
           }}
@@ -906,7 +906,7 @@ function NavBar({ page, setPage }) {
             onMouseLeave={e => { e.target.style.background = "white"; }}
           >
             Prendre RDV
-          </a>
+          </button>
         </div>
 
         {/* Mobile hamburger */}
@@ -945,14 +945,14 @@ function NavBar({ page, setPage }) {
           }}>
             Commencer un test
           </button>
-          <a href="https://rdv.itiaki.com/astrid-quemener" target="_blank" rel="noopener noreferrer" style={{
+          <button onClick={() => navigate("consultations")} style={{
             display: "block", width: "100%", marginTop: 8, textAlign: "center",
             background: "white", color: COLORS.terracotta, border: `1.5px solid ${COLORS.terracotta}`,
-            borderRadius: 14, padding: "13px 24px", textDecoration: "none", boxSizing: "border-box",
+            borderRadius: 14, padding: "13px 24px", cursor: "pointer", boxSizing: "border-box",
             fontFamily: "'DM Sans', sans-serif", fontSize: 15, fontWeight: 600,
           }}>
             Prendre RDV →
-          </a>
+          </button>
         </div>
       )}
       <style>{`@keyframes fadeUp { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: translateY(0); } }`}</style>
@@ -1042,19 +1042,19 @@ function Hero({ setPage }) {
             >
               Découvrir les tests →
             </button>
-            <a href="https://rdv.itiaki.com/astrid-quemener" target="_blank" rel="noopener noreferrer" style={{
+            <button onClick={() => setPage("consultations")} style={{
               background: COLORS.terracotta, color: "white",
               border: "none", borderRadius: 21,
-              padding: "16px 36px", cursor: "pointer", textDecoration: "none",
+              padding: "16px 36px", cursor: "pointer",
               fontFamily: "'DM Sans', sans-serif", fontSize: 16, fontWeight: 600,
               boxShadow: "0 4px 24px rgba(196,112,75,0.35)",
-              transition: "all 0.3s", display: "inline-block",
+              transition: "all 0.3s",
             }}
               onMouseEnter={e => { e.target.style.transform = "translateY(-2px)"; e.target.style.boxShadow = "0 8px 32px rgba(196,112,75,0.4)"; }}
               onMouseLeave={e => { e.target.style.transform = "translateY(0)"; e.target.style.boxShadow = "0 4px 24px rgba(196,112,75,0.35)"; }}
             >
               Consulter un pro →
-            </a>
+            </button>
           </div>
         </div>
 
@@ -1916,9 +1916,9 @@ function Results({ test, setPage, testAnswers }) {
                 <a href="tel:3114" style={{ background: COLORS.terracotta, color: "white", textDecoration: "none", padding: "10px 20px", borderRadius: 10, fontFamily: "'DM Sans', sans-serif", fontSize: 14, fontWeight: 600 }}>
                   📞 3114 (gratuit, 24h/24)
                 </a>
-                <a href="https://rdv.itiaki.com/astrid-quemener" target="_blank" rel="noopener noreferrer" style={{ background: "white", color: COLORS.deepBrown, border: `1px solid ${COLORS.sand}`, padding: "10px 20px", borderRadius: 10, fontFamily: "'DM Sans', sans-serif", fontSize: 14, fontWeight: 600, textDecoration: "none" }}>
+                <button onClick={() => setPage("consultations")} style={{ background: "white", color: COLORS.deepBrown, border: `1px solid ${COLORS.sand}`, padding: "10px 20px", borderRadius: 10, fontFamily: "'DM Sans', sans-serif", fontSize: 14, fontWeight: 600, cursor: "pointer" }}>
                   Consulter un pro
-                </a>
+                </button>
               </div>
             </div>
           </div>
@@ -2122,9 +2122,9 @@ function Results({ test, setPage, testAnswers }) {
             </div>
           </button>
 
-          <a href="https://rdv.itiaki.com/astrid-quemener" target="_blank" rel="noopener noreferrer" style={{
+          <button onClick={() => setPage("consultations")} style={{
             background: COLORS.terracotta, border: "none",
-            borderRadius: 16, padding: "20px 24px", textDecoration: "none",
+            borderRadius: 16, padding: "20px 24px", cursor: "pointer",
             display: "flex", alignItems: "center", justifyContent: "center", gap: 12,
             transition: "all 0.3s",
             boxShadow: "0 4px 24px rgba(196,112,75,0.3)",
@@ -2138,10 +2138,10 @@ function Results({ test, setPage, testAnswers }) {
                 Consulter un pro
               </div>
               <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 12, color: "rgba(255,255,255,0.8)" }}>
-                Approfondir vos résultats en visio
+                Approfondir vos résultats avec une professionnelle
               </div>
             </div>
-          </a>
+          </button>
         </div>
       </div>
     </section>
@@ -2162,6 +2162,7 @@ const SEO_DATA = {
   "test-detail": { title: "Détail du test — PsychaPro", desc: "Contenu et dimensions du test psychologique." },
   "take-test": { title: "Passation du test — PsychaPro", desc: "Répondez aux questions en toute confidentialité." },
   results: { title: "Vos résultats — PsychaPro", desc: "Profil psychologique détaillé et rapport PDF." },
+  consultations: { title: "Consulter une professionnelle — PsychaPro", desc: "Prenez rendez-vous avec une psychothérapeute ou une professionnelle de l'écoute." },
   legal: { title: "Mentions légales — PsychaPro", desc: "Informations légales, politique de confidentialité RGPD et conditions d'utilisation de PsychaPro." },
 };
 function useSEO(page) {
@@ -2229,8 +2230,47 @@ function JsonLd() {
 // RGPD COOKIE BANNER
 // ============================================================
 function CookieBanner() {
-  const [visible, setVisible] = useState(true);
+  // Clé de stockage et durée de validité (6 mois recommandés par la CNIL)
+  const STORAGE_KEY = "psychapro_cookie_consent";
+  const VALIDITY_DAYS = 180;
+
+  const [visible, setVisible] = useState(false);
   const [showDetails, setShowDetails] = useState(false);
+
+  // Au montage : on regarde si un choix a déjà été enregistré et s'il est encore valide
+  useEffect(() => {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) { setVisible(true); return; }
+      const stored = JSON.parse(raw);
+      const ageMs = Date.now() - stored.timestamp;
+      const ageDays = ageMs / (1000 * 60 * 60 * 24);
+      if (ageDays > VALIDITY_DAYS) {
+        // Consentement expiré, on redemande
+        localStorage.removeItem(STORAGE_KEY);
+        setVisible(true);
+      }
+      // Sinon : choix valide, on n'affiche rien
+    } catch (e) {
+      // Si localStorage est indisponible (mode privé strict, etc.), on affiche le bandeau
+      setVisible(true);
+    }
+  }, []);
+
+  const saveChoice = (choice) => {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify({
+        choice,            // "refuse" | "necessary" | "all"
+        timestamp: Date.now(),
+        version: 1,
+      }));
+    } catch (e) {
+      // Mode privé sans stockage : on masque quand même le bandeau pour la session
+      console.warn("Impossible d'enregistrer le choix cookies (mode privé ?)");
+    }
+    setVisible(false);
+  };
+
   if (!visible) return null;
   return (
     <div role="dialog" aria-label="Consentement cookies" style={{
@@ -2250,14 +2290,15 @@ function CookieBanner() {
               <div style={{ marginTop: 12, padding: 16, background: "rgba(255,255,255,0.06)", borderRadius: 12, fontFamily: "'DM Sans', sans-serif", fontSize: 13, color: "rgba(255,255,255,0.7)", lineHeight: 1.7 }}>
                 <strong style={{ color: "white" }}>Cookies nécessaires</strong> : session, préférences, sécurité CSRF (toujours actifs).<br />
                 <strong style={{ color: "white" }}>Cookies analytiques</strong> : audience anonymisée (requièrent consentement).<br />
-                Aucune donnée vendue ou partagée à des fins publicitaires.
+                Aucune donnée vendue ou partagée à des fins publicitaires.<br />
+                <em style={{ color: "rgba(255,255,255,0.5)" }}>Votre choix est conservé localement dans votre navigateur pendant 6 mois.</em>
               </div>
             )}
           </div>
           <div style={{ display: "flex", gap: 10, flexShrink: 0 }}>
-            <button onClick={() => setVisible(false)} style={{ background: "transparent", color: "rgba(255,255,255,0.6)", border: "1px solid rgba(255,255,255,0.2)", borderRadius: 10, padding: "10px 20px", cursor: "pointer", fontFamily: "'DM Sans', sans-serif", fontSize: 13, fontWeight: 500 }}>Refuser</button>
-            <button onClick={() => setVisible(false)} style={{ background: "transparent", color: "rgba(255,255,255,0.8)", border: "1px solid rgba(255,255,255,0.3)", borderRadius: 10, padding: "10px 20px", cursor: "pointer", fontFamily: "'DM Sans', sans-serif", fontSize: 13, fontWeight: 500 }}>Nécessaires uniquement</button>
-            <button onClick={() => setVisible(false)} style={{ background: COLORS.terracotta, color: "white", border: "none", borderRadius: 10, padding: "10px 20px", cursor: "pointer", fontFamily: "'DM Sans', sans-serif", fontSize: 13, fontWeight: 600 }}>Tout accepter</button>
+            <button onClick={() => saveChoice("refuse")} style={{ background: "transparent", color: "rgba(255,255,255,0.6)", border: "1px solid rgba(255,255,255,0.2)", borderRadius: 10, padding: "10px 20px", cursor: "pointer", fontFamily: "'DM Sans', sans-serif", fontSize: 13, fontWeight: 500 }}>Refuser</button>
+            <button onClick={() => saveChoice("necessary")} style={{ background: "transparent", color: "rgba(255,255,255,0.8)", border: "1px solid rgba(255,255,255,0.3)", borderRadius: 10, padding: "10px 20px", cursor: "pointer", fontFamily: "'DM Sans', sans-serif", fontSize: 13, fontWeight: 500 }}>Nécessaires uniquement</button>
+            <button onClick={() => saveChoice("all")} style={{ background: COLORS.terracotta, color: "white", border: "none", borderRadius: 10, padding: "10px 20px", cursor: "pointer", fontFamily: "'DM Sans', sans-serif", fontSize: 13, fontWeight: 600 }}>Tout accepter</button>
           </div>
         </div>
       </div>
@@ -2269,6 +2310,213 @@ function CookieBanner() {
 // ============================================================
 // MENTIONS LÉGALES — Conformité loi française
 // ============================================================
+// ============================================================
+// PAGE CONSULTATIONS — Présentation des professionnelles
+// ============================================================
+function Consultations({ setPage }) {
+  const professionnelles = [
+    {
+      id: "astrid",
+      nom: "Astrid Quémener",
+      titre: "Psychanalyste & Psychothérapeute",
+      photo: "/Astrid_QUEMENER.jpg",
+      texte: "Une chose en premier lieu est de vous souhaiter « la bienvenue ». L'accueil pour moi est une « joie », qui que vous soyez et là où vous en êtes dans votre problématique.\n\nCette bienveillance dans un non-jugement porte en elle-même une sécurisation active qui permet de vivre un nouveau départ. Mon but en travaillant avec chacun est de fournir un environnement sûr et calme afin d'explorer en profondeur les questions actuelles ou anciennes.\n\nJe pratique la psychanalyse et la psychothérapie. En tant que psychanalyste diplômée de la Fédération Freudienne de psychanalyse, je travaillerai avec vous pour découvrir les processus inconscients et les blocages sources des maux présents.",
+      rdvUrl: "https://rdv.itiaki.com/astrid-quemener",
+      telephone: "06 58 73 76 17",
+      accent: COLORS.terracotta,
+    },
+    {
+      id: "clarisse",
+      nom: "Clarisse des Longchamps",
+      titre: "Psychanalyste",
+      photo: "/Clarisse_des_Longchamps.jpg",
+      texte: "Vous traversez une période difficile, une douleur qui dure, des questions sans réponse ?\n\nJe vous propose un espace de parole, un temps d'écoute attentive, confidentiel, pour cheminer ensemble, en douceur et à votre rythme, vers une meilleure compréhension de votre histoire et de vous-même.",
+      rdvUrl: null,
+      telephone: "07 66 98 83 51",
+      accent: COLORS.sage,
+    },
+  ];
+
+  return (
+    <section style={{
+      padding: "84px clamp(1rem, 4vw, 3rem) 56px",
+      background: `linear-gradient(180deg, ${COLORS.cream}, ${COLORS.warmWhite})`,
+    }}>
+      <div style={{ maxWidth: 1100, margin: "0 auto" }}>
+
+        <div style={{ textAlign: "center", marginBottom: 31 }}>
+          <h1 style={{
+            fontFamily: "'Playfair Display', Georgia, serif",
+            fontSize: 32, fontWeight: 700, color: COLORS.deepBrown, marginBottom: 10,
+          }}>Consulter une professionnelle</h1>
+          <p style={{
+            fontFamily: "'DM Sans', sans-serif", fontSize: 15, color: COLORS.warmGray,
+            maxWidth: 560, margin: "0 auto", lineHeight: 1.6,
+          }}>
+            Pour aller plus loin que les questionnaires, deux professionnelles vous accueillent dans un cadre bienveillant et confidentiel. Les consultations se déroulent <strong style={{ color: COLORS.deepBrown }}>en visioconférence ou par téléphone</strong>, selon votre préférence.
+          </p>
+        </div>
+
+        <div style={{ display: "flex", flexDirection: "column", gap: 22 }}>
+          {professionnelles.map((p) => (
+            <article key={p.id} style={{
+              background: "white",
+              borderRadius: 18,
+              overflow: "hidden",
+              boxShadow: "0 4px 24px rgba(61,43,31,0.07)",
+              border: `1px solid ${COLORS.sand}40`,
+              borderTop: `4px solid ${p.accent}`,
+            }}>
+              <div className="pro-card-grid" style={{
+                display: "grid",
+                gridTemplateColumns: "260px 1fr",
+                gap: 0,
+              }}>
+                {/* Photo */}
+                <div style={{
+                  background: COLORS.offWhite,
+                  display: "flex", alignItems: "center", justifyContent: "center",
+                  minHeight: 260,
+                  overflow: "hidden",
+                }}>
+                  <img
+                    src={p.photo}
+                    alt={`Portrait de ${p.nom}`}
+                    style={{
+                      width: "100%", height: "100%", objectFit: "cover",
+                      display: "block",
+                    }}
+                  />
+                </div>
+
+                {/* Contenu */}
+                <div style={{ padding: "26px 28px" }}>
+                  <h2 style={{
+                    fontFamily: "'Playfair Display', Georgia, serif",
+                    fontSize: 24, fontWeight: 700, color: COLORS.deepBrown,
+                    margin: 0, marginBottom: 4,
+                  }}>{p.nom}</h2>
+                  <p style={{
+                    fontFamily: "'DM Sans', sans-serif", fontSize: 13, fontWeight: 600,
+                    color: p.accent, marginBottom: 12, letterSpacing: "0.3px",
+                  }}>{p.titre}</p>
+
+                  {/* Formats de consultation */}
+                  <div style={{
+                    display: "flex", gap: 6, flexWrap: "wrap", marginBottom: 16,
+                  }}>
+                    <span style={{
+                      display: "inline-flex", alignItems: "center", gap: 5,
+                      background: `${p.accent}12`, color: p.accent,
+                      fontFamily: "'DM Sans', sans-serif", fontSize: 12, fontWeight: 600,
+                      padding: "4px 10px", borderRadius: 8,
+                    }}>🎥 Visio</span>
+                    <span style={{
+                      display: "inline-flex", alignItems: "center", gap: 5,
+                      background: `${p.accent}12`, color: p.accent,
+                      fontFamily: "'DM Sans', sans-serif", fontSize: 12, fontWeight: 600,
+                      padding: "4px 10px", borderRadius: 8,
+                    }}>📞 Téléphone</span>
+                  </div>
+
+                  <div style={{ marginBottom: 19 }}>
+                    {p.texte.split("\n\n").map((paragraph, i) => (
+                      <p key={i} style={{
+                        fontFamily: "'DM Sans', sans-serif", fontSize: 14,
+                        color: COLORS.deepBrown, lineHeight: 1.7, marginBottom: 10,
+                      }}>{paragraph}</p>
+                    ))}
+                  </div>
+
+                  {/* Actions de contact */}
+                  <div style={{
+                    display: "flex", gap: 10, flexWrap: "wrap",
+                    paddingTop: 16, borderTop: `1px solid ${COLORS.sand}50`,
+                  }}>
+                    {p.rdvUrl && (
+                      <a
+                        href={p.rdvUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style={{
+                          background: p.accent,
+                          color: "white",
+                          border: "none",
+                          borderRadius: 12,
+                          padding: "11px 20px",
+                          cursor: "pointer",
+                          textDecoration: "none",
+                          fontFamily: "'DM Sans', sans-serif",
+                          fontSize: 14, fontWeight: 600,
+                          display: "inline-flex", alignItems: "center", gap: 8,
+                          boxShadow: `0 4px 14px ${p.accent}40`,
+                          transition: "all 0.25s",
+                        }}
+                        onMouseEnter={e => e.currentTarget.style.transform = "translateY(-2px)"}
+                        onMouseLeave={e => e.currentTarget.style.transform = "translateY(0)"}
+                      >
+                        📅 Prendre rendez-vous en ligne
+                      </a>
+                    )}
+                    <a
+                      href={`tel:${p.telephone.replace(/\s/g, "")}`}
+                      style={{
+                        background: "white",
+                        color: COLORS.deepBrown,
+                        border: `1.5px solid ${p.accent}`,
+                        borderRadius: 12,
+                        padding: "9.5px 20px",
+                        cursor: "pointer",
+                        textDecoration: "none",
+                        fontFamily: "'DM Sans', sans-serif",
+                        fontSize: 14, fontWeight: 600,
+                        display: "inline-flex", alignItems: "center", gap: 8,
+                        transition: "all 0.25s",
+                      }}
+                      onMouseEnter={e => { e.currentTarget.style.background = `${p.accent}10`; }}
+                      onMouseLeave={e => { e.currentTarget.style.background = "white"; }}
+                    >
+                      📞 {p.telephone}
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+
+        {/* Info en bas */}
+        <div style={{
+          marginTop: 25, padding: 16, background: `${COLORS.sage}10`,
+          borderRadius: 12, border: `1px solid ${COLORS.sage}30`,
+          display: "flex", alignItems: "center", gap: 12,
+        }}>
+          <span style={{ fontSize: 20 }}>ℹ️</span>
+          <p style={{
+            fontFamily: "'DM Sans', sans-serif", fontSize: 13,
+            color: COLORS.deepBrown, lineHeight: 1.5, margin: 0,
+          }}>
+            Les consultations se déroulent en visioconférence ou par téléphone, dans un cadre strictement confidentiel. Les modalités, tarifs et conditions sont précisés directement avec chaque professionnelle lors de la prise de contact.
+          </p>
+        </div>
+      </div>
+
+      <style>{`
+        @media (max-width: 768px) {
+          .pro-card-grid {
+            grid-template-columns: 1fr !important;
+          }
+          .pro-card-grid > div:first-child {
+            min-height: 280px !important;
+            max-height: 320px !important;
+          }
+        }
+      `}</style>
+    </section>
+  );
+}
+
+
 function MentionsLegales({ setPage, activeLegal }) {
   const [tab, setTab] = useState(activeLegal || "mentions");
   const P = ({ children, small }) => <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: small ? 12 : 14, color: small ? COLORS.warmGray : COLORS.deepBrown, lineHeight: 1.8, marginBottom: 12 }}>{children}</p>;
@@ -2408,7 +2656,7 @@ function MentionsLegales({ setPage, activeLegal }) {
               Même si nous collectons très peu de données, vous disposez en vertu du RGPD des droits suivants : accès, rectification, effacement, limitation, opposition, portabilité et retrait du consentement.
             </P>
             <P>
-             Pour exercer ces droits, écrivez à <strong>psychafrance@outlook.fr</strong>. Une réponse vous sera apportée dans un délai maximum de 30 jours.
+              Pour exercer ces droits, écrivez à <strong>psychafrance@outlook.fr</strong>. Une réponse vous sera apportée dans un délai maximum de 30 jours.
             </P>
             <P>
               En cas de désaccord, vous pouvez introduire une réclamation auprès de la <strong>CNIL</strong> : 3 place de Fontenoy, TSA 80715, 75334 Paris Cedex 07 — <a href="https://www.cnil.fr" target="_blank" rel="noopener noreferrer" style={{ color: COLORS.terracotta }}>www.cnil.fr</a>
@@ -2527,7 +2775,7 @@ function MentionsLegales({ setPage, activeLegal }) {
 
             <H3>12. Contact</H3>
             <P>
-            Pour toute question relative aux présentes CGU : <strong>psychafrance@outlook.fr</strong>
+              Pour toute question relative aux présentes CGU : <strong>psychafrance@outlook.fr</strong>
             </P>
           </article>)}
         </div>
@@ -2578,7 +2826,7 @@ function Footer({ setPage }) {
             { label: "Relations", action: () => setPage("tests") },
           ]},
           { title: "Services", links: [
-            { label: "Prendre rendez-vous", action: () => window.open("https://rdv.itiaki.com/astrid-quemener", "_blank") },
+            { label: "Prendre rendez-vous", action: () => setPage("consultations") },
             { label: "Rapport PDF", action: () => setPage("tests") },
             { label: "Nos tests", action: () => setPage("tests") },
           ]},
@@ -2710,6 +2958,7 @@ export default function App() {
         {page === "test-detail" && <TestDetail test={selectedTest} setPage={setPage} />}
         {page === "take-test" && <TakeTest test={selectedTest} setPage={setPage} setTestAnswers={setTestAnswers} />}
         {page === "results" && <Results test={selectedTest} setPage={setPage} testAnswers={testAnswers} />}
+        {page === "consultations" && <Consultations setPage={setPage} />}
         {page === "legal" && <MentionsLegales setPage={setPage} activeLegal="mentions" />}
         {page === "legal-rgpd" && <MentionsLegales setPage={setPage} activeLegal="rgpd" />}
         {page === "legal-cgv" && <MentionsLegales setPage={setPage} activeLegal="cgv" />}
