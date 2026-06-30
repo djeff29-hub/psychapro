@@ -2314,6 +2314,9 @@ function CookieBanner() {
 // PAGE CONSULTATIONS — Présentation des professionnelles
 // ============================================================
 function Consultations({ setPage }) {
+  const [revealedPhones, setRevealedPhones] = useState({});
+  const revealPhone = (id) => setRevealedPhones(prev => ({ ...prev, [id]: true }));
+
   const professionnelles = [
     {
       id: "astrid",
@@ -2458,26 +2461,50 @@ function Consultations({ setPage }) {
                         📅 Prendre rendez-vous en ligne
                       </a>
                     )}
-                    <a
-                      href={`tel:${p.telephone.replace(/\s/g, "")}`}
-                      style={{
-                        background: "white",
-                        color: COLORS.deepBrown,
-                        border: `1.5px solid ${p.accent}`,
-                        borderRadius: 12,
-                        padding: "9.5px 20px",
-                        cursor: "pointer",
-                        textDecoration: "none",
-                        fontFamily: "'DM Sans', sans-serif",
-                        fontSize: 14, fontWeight: 600,
-                        display: "inline-flex", alignItems: "center", gap: 8,
-                        transition: "all 0.25s",
-                      }}
-                      onMouseEnter={e => { e.currentTarget.style.background = `${p.accent}10`; }}
-                      onMouseLeave={e => { e.currentTarget.style.background = "white"; }}
-                    >
-                      📞 {p.telephone}
-                    </a>
+                    {revealedPhones[p.id] ? (
+                      <a
+                        href={`tel:${p.telephone.replace(/\s/g, "")}`}
+                        style={{
+                          background: "white",
+                          color: COLORS.deepBrown,
+                          border: `1.5px solid ${p.accent}`,
+                          borderRadius: 12,
+                          padding: "9.5px 20px",
+                          cursor: "pointer",
+                          textDecoration: "none",
+                          fontFamily: "'DM Sans', sans-serif",
+                          fontSize: 14, fontWeight: 600,
+                          display: "inline-flex", alignItems: "center", gap: 8,
+                          transition: "all 0.25s",
+                          animation: "fadeIn 0.3s ease",
+                        }}
+                        onMouseEnter={e => { e.currentTarget.style.background = `${p.accent}10`; }}
+                        onMouseLeave={e => { e.currentTarget.style.background = "white"; }}
+                      >
+                        📞 {p.telephone}
+                      </a>
+                    ) : (
+                      <button
+                        onClick={() => revealPhone(p.id)}
+                        aria-label={`Afficher le numéro de téléphone de ${p.nom}`}
+                        style={{
+                          background: "white",
+                          color: p.accent,
+                          border: `1.5px dashed ${p.accent}`,
+                          borderRadius: 12,
+                          padding: "9.5px 20px",
+                          cursor: "pointer",
+                          fontFamily: "'DM Sans', sans-serif",
+                          fontSize: 14, fontWeight: 600,
+                          display: "inline-flex", alignItems: "center", gap: 8,
+                          transition: "all 0.25s",
+                        }}
+                        onMouseEnter={e => { e.currentTarget.style.background = `${p.accent}10`; e.currentTarget.style.borderStyle = "solid"; }}
+                        onMouseLeave={e => { e.currentTarget.style.background = "white"; e.currentTarget.style.borderStyle = "dashed"; }}
+                      >
+                        📞 Afficher le numéro
+                      </button>
+                    )}
                   </div>
                 </div>
               </div>
@@ -2502,6 +2529,10 @@ function Consultations({ setPage }) {
       </div>
 
       <style>{`
+        @keyframes fadeIn {
+          from { opacity: 0; transform: scale(0.95); }
+          to { opacity: 1; transform: scale(1); }
+        }
         @media (max-width: 768px) {
           .pro-card-grid {
             grid-template-columns: 1fr !important;
