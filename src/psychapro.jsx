@@ -2326,6 +2326,7 @@ function Consultations({ setPage }) {
       texte: "Une chose en premier lieu est de vous souhaiter « la bienvenue ». L'accueil pour moi est une « joie », qui que vous soyez et là où vous en êtes dans votre problématique.\n\nCette bienveillance dans un non-jugement porte en elle-même une sécurisation active qui permet de vivre un nouveau départ. Mon but en travaillant avec chacun est de fournir un environnement sûr et calme afin d'explorer en profondeur les questions actuelles ou anciennes.\n\nJe pratique la psychanalyse et la psychothérapie. En tant que psychanalyste diplômée de la Fédération Freudienne de psychanalyse, je travaillerai avec vous pour découvrir les processus inconscients et les blocages sources des maux présents.",
       rdvUrl: "https://rdv.itiaki.com/astrid-quemener",
       telephone: "06 58 73 76 17",
+      siteWeb: "https://psycha.fr",
       accent: COLORS.terracotta,
     },
     {
@@ -2333,7 +2334,7 @@ function Consultations({ setPage }) {
       nom: "Clarisse des Longchamps",
       titre: "Psychanalyste",
       photo: "/Clarisse_des_Longchamps.jpg",
-      texte: "Vous traversez une période difficile, une douleur qui dure, des questions sans réponse ?\n\nJe vous propose un espace de parole, un temps d'écoute attentive, confidentiel, pour cheminer ensemble, en douceur et à votre rythme, vers une meilleure compréhension de votre histoire et de vous-même.",
+      texte: "Si la vie est en douleur qui ne passe pas, si des émotions ne sont saisis et réglés, et si l'angoisse aux mille questions restent sans réponse, soyez le bienvenu·e.\n\nJe suis là pour vous offrir un espace calme, sécurisant, afin de cheminer ensemble dans l'écoute attentive de votre histoire, dans le dire de ce qui est aujourd'hui, à votre rythme et à votre façon, sans jugement.\n\nEn confiance, nous prendrons le temps, avec douceur, de repérer ce qui se joue à travers les tensions et douleurs : les conflits intérieurs, les schémas qui se répètent, les contradictions... Dans une rencontre de ce qui fait sens et vérité pour vous.\n\nComprendre, savoir, c'est l'ouverture vers une meilleure façon de vivre.",
       rdvUrl: null,
       telephone: "07 66 98 83 51",
       accent: COLORS.sage,
@@ -2504,6 +2505,29 @@ function Consultations({ setPage }) {
                       >
                         📞 Afficher le numéro
                       </button>
+                    )}
+                    {p.siteWeb && (
+                      <a
+                        href={p.siteWeb}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style={{
+                          background: "white",
+                          color: p.accent,
+                          border: `1.5px solid ${p.accent}40`,
+                          borderRadius: 12,
+                          padding: "9.5px 20px",
+                          textDecoration: "none",
+                          fontFamily: "'DM Sans', sans-serif",
+                          fontSize: 14, fontWeight: 600,
+                          display: "inline-flex", alignItems: "center", gap: 8,
+                          transition: "all 0.25s",
+                        }}
+                        onMouseEnter={e => { e.currentTarget.style.background = `${p.accent}10`; e.currentTarget.style.borderColor = p.accent; }}
+                        onMouseLeave={e => { e.currentTarget.style.background = "white"; e.currentTarget.style.borderColor = `${p.accent}40`; }}
+                      >
+                        🌐 {p.siteWeb.replace(/^https?:\/\//, "")}
+                      </a>
                     )}
                   </div>
                 </div>
