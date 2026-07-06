@@ -1,0 +1,16 @@
+export const COLORS = {
+  cream: "#FFF8F0",
+  warmWhite: "#FFFDF9",
+  sand: "#F5E6D3",
+  terracotta: "#C4704B",
+  terracottaLight: "#E8956D",
+  sage: "#8FA68A",
+  sageDark: "#6B8B65",
+  sageLight: "#B8D4B2",
+  deepBrown: "#3D2B1F",
+  warmGray: "#8C7B6B",
+  blush: "#F2D4C4",
+  lavender: "#D4C5E2",
+  softGold: "#D4A853",
+  offWhite: "#FAF6F1",
+};
