@@ -1846,7 +1846,7 @@ function Results({ test, setPage, testAnswers }) {
         doc.setFont("helvetica", "normal");
         doc.text("PsychaPro — Ces résultats sont informatifs et ne constituent pas un diagnostic médical.", margin, 290);
         doc.text(`Page ${i}/${pageCount}`, pageW - margin, 290, { align: "right" });
-        doc.text("psychapro.fr", margin, 294);
+        doc.text("monpsy.click", margin, 294);
         if (results.critical || test.id === "phq9" || test.id === "gad7") {
           doc.setTextColor(...terra);
           doc.setFont("helvetica", "bold");
@@ -2187,8 +2187,8 @@ function useSEO(page) {
     setMeta("property", "og:title", seo.title);
     setMeta("property", "og:description", seo.desc);
     setMeta("property", "og:type", "website");
-    setMeta("property", "og:url", "https://www.psychapro.fr");
-    setMeta("property", "og:image", "https://www.psychapro.fr/og-image.jpg");
+    setMeta("property", "og:url", "https://monpsy.click");
+    setMeta("property", "og:image", "https://monpsy.click/og-image.jpg");
     setMeta("property", "og:locale", "fr_FR");
     setMeta("property", "og:site_name", "PsychaPro");
 
@@ -2196,12 +2196,12 @@ function useSEO(page) {
     setMeta("name", "twitter:card", "summary_large_image");
     setMeta("name", "twitter:title", seo.title);
     setMeta("name", "twitter:description", seo.desc);
-    setMeta("name", "twitter:image", "https://www.psychapro.fr/og-image.jpg");
+    setMeta("name", "twitter:image", "https://monpsy.click/og-image.jpg");
 
     // Canonical URL
     let canonical = document.querySelector('link[rel="canonical"]');
     if (!canonical) { canonical = document.createElement("link"); canonical.rel = "canonical"; document.head.appendChild(canonical); }
-    canonical.href = "https://www.psychapro.fr" + (page === "home" ? "" : "/" + page);
+    canonical.href = "https://monpsy.click" + (page === "home" ? "" : "/" + page);
 
     // Language
     document.documentElement.lang = "fr";
@@ -2209,7 +2209,7 @@ function useSEO(page) {
 }
 function JsonLd() {
   useEffect(() => {
-    const data = { "@context": "https://schema.org", "@type": "MedicalBusiness", "name": "PsychaPro", "url": "https://www.psychapro.fr",
+    const data = { "@context": "https://schema.org", "@type": "MedicalBusiness", "name": "PsychaPro", "url": "https://monpsy.click",
       "description": "Tests psychologiques gratuits et consultations en visioconférence avec des psychologues qualifiés.",
       "address": { "@type": "PostalAddress", "addressLocality": "Lyon", "postalCode": "69002", "addressCountry": "FR" },
       "priceRange": "Gratuit — €€", "medicalSpecialty": "Psychiatric",
@@ -2601,7 +2601,7 @@ function MentionsLegales({ setPage, activeLegal }) {
 
             <H3>1. Éditeur du site</H3>
             <P>
-              Le site <strong>psychapro.fr</strong> est édité par :<br />
+              Le site <strong>monpsy.click</strong> est édité par :<br />
               <strong>Astrid Quémener</strong> — Entrepreneure individuelle<br />
               Adresse professionnelle : [à compléter]<br />
               SIRET : [numéro à compléter après immatriculation]<br />
@@ -2661,7 +2661,7 @@ function MentionsLegales({ setPage, activeLegal }) {
 
             <H3>1. Responsable du traitement</H3>
             <P>
-              Le responsable du traitement des données est <strong>Astrid Quémener</strong>, entrepreneure individuelle, éditrice du site psychapro.fr.<br />
+              Le responsable du traitement des données est <strong>Astrid Quémener</strong>, entrepreneure individuelle, éditrice du site monpsy.click.<br />
               Pour toute question relative à vos données : <strong>psychafrance@outlook.fr</strong>
             </P>
 
@@ -2745,11 +2745,11 @@ function MentionsLegales({ setPage, activeLegal }) {
 
           {tab === "cgv" && (<article>
             <h2 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 24, fontWeight: 700, color: COLORS.deepBrown, marginBottom: 16 }}>Conditions Générales d'Utilisation</h2>
-            <P small>En vigueur à compter du [date à compléter]. Le site psychapro.fr ne vendant aucun bien ni service payant, il n'y a pas de CGV (Conditions Générales de Vente) à proprement parler — les présentes CGU régissent l'accès et l'usage gratuit du site.</P>
+            <P small>En vigueur à compter du [date à compléter]. Le site monpsy.click ne vendant aucun bien ni service payant, il n'y a pas de CGV (Conditions Générales de Vente) à proprement parler — les présentes CGU régissent l'accès et l'usage gratuit du site.</P>
 
             <H3>1. Objet</H3>
             <P>
-              Les présentes Conditions Générales d'Utilisation (CGU) encadrent l'accès au site <strong>psychapro.fr</strong> et l'utilisation des questionnaires psychologiques gratuits qui y sont proposés. En naviguant sur le site, vous acceptez ces conditions sans réserve.
+              Les présentes Conditions Générales d'Utilisation (CGU) encadrent l'accès au site <strong>monpsy.click</strong> et l'utilisation des questionnaires psychologiques gratuits qui y sont proposés. En naviguant sur le site, vous acceptez ces conditions sans réserve.
             </P>
 
             <H3>2. Accès au service</H3>
@@ -2790,7 +2790,7 @@ function MentionsLegales({ setPage, activeLegal }) {
 
             <H3>6. Prise de rendez-vous avec un professionnel</H3>
             <P>
-              Le bouton « Prendre RDV » vous redirige vers un service tiers de prise de rendez-vous en ligne (<a href="https://rdv.itiaki.com/astrid-quemener" target="_blank" rel="noopener noreferrer" style={{ color: COLORS.terracotta }}>rdv.itiaki.com/astrid-quemener</a>). À partir de ce clic, vous quittez psychapro.fr et acceptez les conditions propres à cette plateforme.
+              Le bouton « Prendre RDV » vous redirige vers un service tiers de prise de rendez-vous en ligne (<a href="https://rdv.itiaki.com/astrid-quemener" target="_blank" rel="noopener noreferrer" style={{ color: COLORS.terracotta }}>rdv.itiaki.com/astrid-quemener</a>). À partir de ce clic, vous quittez monpsy.click et acceptez les conditions propres à cette plateforme.
             </P>
             <P>
               Les consultations proposées via cette plateforme tierce font l'objet d'un contrat direct entre vous et Astrid Quémener en tant que professionnelle indépendante. Les modalités, tarifs, conditions d'annulation, obligations déontologiques et législation applicable à ces consultations ne relèvent pas des présentes CGU et sont régies par les conditions d'Itiaki et le cadre légal de l'activité professionnelle exercée.
