@@ -22,7 +22,16 @@ export function Results() {
   });
 
   const storedAnswers = test ? sessionStorage.getItem(`psychapro_answers_${test.id}`) : null;
-  const testAnswers = storedAnswers ? JSON.parse(storedAnswers) : null;
+  let testAnswers = null;
+  if (storedAnswers) {
+    try {
+      testAnswers = JSON.parse(storedAnswers);
+    } catch {
+      // Données corrompues (édition manuelle, ancien schéma, etc.) : on retombe sur null,
+      // ce qui déclenche la redirection vers la page de passation ci-dessous.
+      testAnswers = null;
+    }
+  }
 
   // --- every hook, called unconditionally, before any early return ---
   const [visible, setVisible] = useState(false);
